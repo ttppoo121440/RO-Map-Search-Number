@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="container text-center app">
+    <div class="">
+      <div class="align-items-center">
+        <input class=" my-5" type="text" placeholder="輸入地圖關鍵字" v-model="search">
+      </div>
+      <div>
+        <ul class="list-group text-left">
+          <li class="list-group-item" v-for="list in filterMap" ::key="list.map">
+            <h1><span
+                :class="{'text-success':list.type === '洞穴','text-primary':list.type === '原野'}">({{ list.type }})</span>
+              <span class="text-danger">{{ list.no }}</span>-{{ list.map }}
+            </h1>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: ".app",
+      data() {
+        return {
+          search: "",
+          mapList: [{
+              type: "洞穴",
+              no: "01",
+              map: "螞蟻地域 迷宮"
+            }, {
+              type: "洞穴",
+              no: "02",
+              map: "克魔島 洞穴"
+            }, {
+              type: "洞穴",
+              no: "03",
+              map: "斐揚 地下 洞穴"
+            }, {
+              type: "洞穴",
+              no: "04",
+              map: "獸人地下洞窟"
+            }, {
+              type: "洞穴",
+              no: "05",
+              map: "金字塔 迷宮"
+            }, {
+              type: "洞穴",
+              no: "06",
+              map: "史芬克斯 密穴"
+            }, {
+              type: "洞穴",
+              no: "07",
+              map: "克雷斯特漢姆古城"
+            }, {
+              type: "洞穴",
+              no: "08",
+              map: "普隆德拉 地下水道"
+            }, {
+              type: "洞穴",
+              no: "09",
+              map: "海底 洞穴"
+            }, {
+              type: "洞穴",
+              no: "10",
+              map: "艾爾貝塔 沉沒之船"
+            }, {
+              type: "洞穴",
+              no: "11",
+              map: "妙勒尼 廢棄礦場"
+            }, {
+              type: "洞穴",
+              no: "12",
+              map: "迷藏森林"
+            }, {
+              type: "洞穴",
+              no: "13",
+              map: "艾爾帕蘭鐘塔"
+            }, {
+              type: "洞穴",
+              no: "14",
+              map: "崑崙 洞穴"
+            }, {
+              type: "洞穴",
+              no: "15",
+              map: "葛帔尼亞"
+            }, {
+              type: "洞穴",
+              no: "16",
+              map: "天津町洞穴"
+            }, {
+              type: "洞穴",
+              no: "17",
+              map: "烏龜島"
+            }, {
+              type: "洞穴",
+              no: "18",
+              map: "冰洞穴"
+            }, {
+              type: "洞穴",
+              no: "19",
+              map: "玩具工廠"
+            }, {
+              type: "洞穴",
+              no: "20",
+              map: "托爾火山"
+            }, {
+              type: "洞穴",
+              no: "21",
+              map: "深淵之湖地下洞穴"
+            }, {
+              type: "洞穴",
+              no: "22",
+              map: "無名島修道院"
+            }, {
+              type: "洞穴",
+              no: "23",
+              map: "達納托斯塔台"
+            }, {
+              type: "洞穴",
+              no: "24",
+              map: "奧丁神殿"
+            }, {
+              type: "洞穴",
+              no: "25",
+              map: "神殿 聖域"
+            }, {
+              type: "洞穴",
+              no: "26",
+              map: "生體試驗研究所"
+            }, {
+              type: "洞穴",
+              no: "27",
+              map: "甲蟲洞穴"
+            }, {
+              type: "洞穴",
+              no: "28",
+              map: "哎喲泰雅 古代神殿"
+            }, {
+              type: "洞穴",
+              no: "29",
+              map: "德瓦他洞穴"
+            }, {
+              type: "洞穴",
+              no: "30",
+              map: "優配擂斯"
+            }, {
+              type: "洞穴",
+              no: "31",
+              map: "諾可羅德"
+            }, {
+              type: "洞穴",
+              no: "32",
+              map: "巴西瀑布洞穴"
+            }, {
+              type: "洞穴",
+              no: "33",
+              map: "艾音布羅克礦山洞穴"
+            }, {
+              type: "洞穴",
+              no: "34",
+              map: "尼德霍格的巢穴"
+            }, {
+              type: "洞穴",
+              no: "35",
+              map: "機械人形工廠"
+            }, {
+              type: "洞穴",
+              no: "36",
+              map: "吉芬地下密穴"
+            }, {
+              type: "洞穴",
+              no: "37",
+              map: "龍之城"
+            }, {
+              type: "洞穴",
+              no: "38",
+              map: "星光珊瑚地區"
+            }, , {
+              type: "洞穴",
+              no: "39",
+              map: "莫斯科森林"
+            }, {
+              type: "洞穴",
+              no: "40",
+              map: "洨巴拉 森林"
+            }, {
+              type: "洞穴",
+              no: "41",
+              map: "彩虹橋高塔"
+            }, {
+              type: "洞穴",
+              no: "42",
+              map: "深淵迴廊"
+            }, {
+              type: "洞穴",
+              no: "43",
+              map: "夢幻地下古文明"
+            }, {
+              type: "洞穴",
+              no: "44",
+              map: "羅比奧 龍巢穴"
+            }, {
+              type: "原野",
+              no: "01",
+              map: "普隆德拉 原野"
+            }, {
+              type: "原野",
+              no: "02",
+              map: "斐揚 原野"
+            }, {
+              type: "原野",
+              no: "03",
+              map: "蘇克拉特 沙漠"
+            }, {
+              type: "原野",
+              no: "04",
+              map: "天津町 原野"
+            }, {
+              type: "原野",
+              no: "05",
+              map: "哎喲泰雅 原野"
+            }, {
+              type: "原野",
+              no: "06",
+              map: "彩虹橋 原野"
+            }, {
+              type: "原野",
+              no: "07",
+              map: "巴西 原野"
+            }, {
+              type: "原野",
+              no: "08",
+              map: "克魔島 原野/克克魔 區域"
+            }, {
+              type: "原野",
+              no: "09",
+              map: "德瓦他 原野"
+            }, {
+              type: "原野",
+              no: "10",
+              map: "艾可拉朱 原野"
+            }, {
+              type: "原野",
+              no: "11",
+              map: "艾音布羅克 原野"
+            }, {
+              type: "原野",
+              no: "12",
+              map: "卡米達山麓 原野"
+            }, {
+              type: "原野",
+              no: "13",
+              map: "吉芬 區域"
+            }, {
+              type: "原野",
+              no: "14",
+              map: "崑崙 原野"
+            }, {
+              type: "原野",
+              no: "15",
+              map: "毀格 原野"
+            }, {
+              type: "原野",
+              no: "16",
+              map: "里希塔樂鎮 原野"
+            },
+            {
+              type: "原野",
+              no: "17",
+              map: "洛陽 原野"
+            }, {
+              type: "原野",
+              no: "18",
+              map: "薑餅城 原野"
+            },
+            {
+              type: "原野",
+              no: "19",
+              map: "馬來港 原野"
+            },
+            {
+              type: "原野",
+              no: "20",
+              map: "魔怒克 原野"
+            },
+            {
+              type: "原野",
+              no: "21",
+              map: "妙勒尼 山脈"
+            },
+            {
+              type: "原野",
+              no: "22",
+              map: "莫斯科比亞 原野"
+            },
+            {
+              type: "原野",
+              no: "23",
+              map: "尼芙菲姆 原野"
+            },
+            {
+              type: "原野",
+              no: "24",
+              map: "拉赫 原野"
+            },
+            {
+              type: "原野",
+              no: "25",
+              map: "史波浪壯麗 原野"
+            },
+            {
+              type: "原野",
+              no: "26",
+              map: "洨巴拉 郊外"
+            },
+            {
+              type: "原野",
+              no: "27",
+              map: "菲音斯 原野"
+            },
+            {
+              type: "原野",
+              no: "28",
+              map: "朱諾 原野"
+            },
+          ]
+
+        }
+      },
+      computed: {
+        filterMap() {
+          return this.mapList.filter(item => {
+            return item.map.indexOf(this.search) > -1
+          })
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
